@@ -5,4 +5,5 @@ export class Song {
     popularity: number;
     price: number;
     duration: number;
+    bought: boolean;
 }

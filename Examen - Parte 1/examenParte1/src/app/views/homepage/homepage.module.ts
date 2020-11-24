@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './homepage.component';
+import { detailDialog, HomepageComponent } from './homepage.component';
 
 //angular material
 import { MatButtonModule } from '@angular/material/button'
@@ -16,6 +16,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSortModule } from '@angular/material/sort'; 
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 
 
 const routes: Routes = [
@@ -47,13 +48,18 @@ const routes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatFormFieldModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatDialogModule
   ],
   declarations: [
-    HomepageComponent 
+    HomepageComponent,
+    detailDialog
+  ],
+  entryComponents: [
+    detailDialog
   ],
   providers: [
-
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
   ]
 })
 

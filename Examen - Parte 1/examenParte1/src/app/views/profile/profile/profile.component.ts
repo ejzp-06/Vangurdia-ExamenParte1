@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Album } from 'src/models/album';
+import { AlbumService } from '../../../services/albums/albums'
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-profile',
@@ -8,104 +10,70 @@ import { Album } from 'src/models/album';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
-
-  Albums: Album[] = [
-    {id: 0, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ]},
-    {id: 1, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ]},
-    {id: 2, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 3, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 4, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 5, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 6, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 7, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 8, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 9, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-    {id: 10, name: 'Hydrogen', author: 'test', price: 10, launchDate: '11/22/2020',description: 'generic', genre: 'rock', points: 10, songs: 
-    [
-      {id: 0, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 1, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 2, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 3, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-      {id: 4, name:"test", author: "test", popularity: 10, price: 10, duration: 10},
-    ] },
-
-  ];
-
-  displayedColumns: string[] = ['position', 'nombre', 'artista', 'actions'];
-  dataSource = this.Albums;
+  constructor(public AlbumService: AlbumService,public dialog: MatDialog) { }
 
   ngOnInit(): void {
+    this.getBoughtAlbums();
   }
+
+  getBoughtAlbums(){
+    this.boughtAlbums = this.AlbumService.getBoughtAlbums();
+    this.datasource = this.boughtAlbums;
+  }
+
+  boughtAlbums: Album[];
+
+  displayedColumns: string[] = ['position', 'nombre', 'artista', 'actions'];
+  datasource: any;
+
+  openDialog(i: number): void {
+    const dialogRef = this.dialog.open(detailDialog, {
+      width: '70%',
+      data: {
+        album: this.boughtAlbums[i],
+        index: i
+      }
+      });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      //this.animal = result;
+    });
+  }
+}
+
+@Component({
+  selector: 'detail-select',
+  templateUrl: '../detail/detail.html',
+  styleUrls: ['../detail/detail.css']
+})
+export class detailDialog implements OnInit{
+
+  duration: number;
+
+  constructor(
+    public dialogRef: MatDialogRef<ProfileComponent>,
+    public albumService: AlbumService,
+    @Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  ngOnInit(){
+    console.log(this.data);
+    this.duration = 0;
+    this.data.album.songs.forEach(element => {
+      this.duration += element.duration;
+    });
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+  buySong(i: number){
+    this.albumService.boughtSong(this.data.index, i);
+  }
+
+
+  displayedColumns: string[] = ['position', 'nombre', 'artista', 'popularidad','duracion','precio'];
+  dataSource = this.data.album.songs;
 
 }

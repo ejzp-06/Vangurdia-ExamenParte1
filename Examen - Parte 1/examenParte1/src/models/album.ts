@@ -9,5 +9,6 @@ export class Album {
     points: number;
     launchDate: string;
     description: string;
+    bought: boolean;
     songs: Array<Song>;
 }

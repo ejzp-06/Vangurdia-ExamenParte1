@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ProfileComponent } from './profile.component';
+import { detailDialog, ProfileComponent } from './profile.component';
 
 //angular material
 import { MatButtonModule } from '@angular/material/button'
@@ -17,7 +17,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox'
 import { MatExpansionModule } from '@angular/material/expansion'
 import { MatIconModule } from '@angular/material/icon'
 import { MatSortModule } from '@angular/material/sort'; 
-
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog'
 const routes: Routes = [
   {
     path: '',
@@ -47,13 +47,18 @@ const routes: Routes = [
     MatPaginatorModule,
     MatSortModule,
     MatCheckboxModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   declarations: [
-    ProfileComponent 
+    ProfileComponent,
+    detailDialog
+  ],
+  entryComponents: [
+    detailDialog
   ],
   providers: [
-
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
   ]
 })
 
