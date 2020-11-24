@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "examenParte1"
+    }
+  },
+  "defaultProject": "examenParte1",
+  "cli": {
+    "analytics": false
+  }
 }
